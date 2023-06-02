@@ -1,3 +1,6 @@
+import { Divider } from '@mui/material';
+import LaunchIcon from '@mui/icons-material/Launch';
+
 const Definitions = ({ apiResponse }) => {
   console.log(apiResponse[0].meanings[0].definitions);
   return (
@@ -34,6 +37,16 @@ const Definitions = ({ apiResponse }) => {
           </>
         );
       })}
+
+      <Divider />
+
+      <h3 className="source">
+        Source:{' '}
+        <a href={`${apiResponse[0].sourceUrls[0]}`}>
+          {apiResponse[0].sourceUrls[0]}
+          <LaunchIcon className='icon' />
+        </a>
+      </h3>
     </div>
   );
 };
