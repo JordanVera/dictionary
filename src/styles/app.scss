@@ -1,0 +1,97 @@
+$black: #050505;
+$white: #fff;
+$grey1: #757575;
+$grey2: #1f1f1f;
+$purple: #A445ED;
+
+.purpleTxt {
+  color: $purple;
+}
+
+:root {
+  background-color: $black;
+}
+
+#root {
+  padding: 1rem;
+}
+
+#appbar {
+
+  .MuiToolbar-root {
+
+    background-color: $black !important;
+  }
+}
+
+.MuiInputBase-root {
+  background-color: $grey2;
+}
+
+#searchedWordForm {
+  margin: 1rem 0;
+
+
+  #searchBar {
+    width: 100% !important;
+  }
+}
+
+
+#definitions {
+  text-align: left;
+
+  .phonetic {
+    color: $purple;
+  }
+
+  .partOfSpeech {
+    font-style: italic;
+  }
+
+  .meaning {
+    color: $grey1;
+  }
+
+  ul>li {
+    color: $purple;
+  }
+
+  ul>li>span {
+    color: $white;
+  }
+
+
+  .syn {
+    margin-left: 2rem;
+  }
+
+
+
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $white;
+    margin: 1rem 0;
+  }
+
+
+  .partOfSpeech {
+    display: flex;
+    align-items: center;
+  }
+
+  .partOfSpeech::after {
+    content: '';
+    flex: 1;
+    margin-left: 1rem;
+    height: 1px;
+    background-color: $white;
+  }
+}
+
+h1 {
+  text-transform: capitalize;
+}
