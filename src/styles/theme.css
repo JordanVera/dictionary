@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter&family=Lora&display=swap');
+
+/* font-family: 'Inconsolata', monospace;
+font-family: 'Inter', sans-serif;
+font-family: 'Lora', serif; */
+
 :root {
   --body_background: #050505;
   --body_color: #fff;
@@ -8,7 +14,8 @@
   --icon_colors: #A445ED;
   --purpleRGBA:  rgba(164, 69, 237, .3);
   --link_color: navy;
-  --font_URL: url('/fonts/lora/Lora-VariableFont_wght.ttf');
+  --font_URL: 'Lora', serif; 
+  ;
 }
 
 
@@ -22,6 +29,13 @@
   --icon_colors: #757575;
   --purpleRGBA:  rgba(164, 69, 237, .3);
   --link_color: red;
+}
+[data-font="sansSerif"] {
+  --font_URL:  'Inter', sans-serif; 
+}
+
+[data-font="mono"] {
+  --font_URL:  'Inconsolata', monospace;
 }
 
 body {
@@ -38,11 +52,16 @@ a {
 }
 
 li, h1, h2, h3, h4, span, p {
-	font-family: lora;
+	font-family: var(--font_URL);
 }
 .purpleTxt {
 	color: var(--purple);
 }
+
+.mainLogo{
+	height: 3rem;
+}
+
 #root {
 	padding: 1rem;
 }
@@ -55,6 +74,14 @@ li, h1, h2, h3, h4, span, p {
   width: 2rem;
 }
 
+#appbar .fontSelect {
+	width: 150px;
+	background-color: var(--body_background) !important;
+}
+
+.divider{
+	border-color: var(--grey2);
+}
 
 .searchIcon, .menuIcon{
   color: var(--icon_colors)
@@ -135,6 +162,7 @@ li, h1, h2, h3, h4, span, p {
 	font-size: 16px !important;
 }
 h1 {
+  font-weight: 800 !important;
 	text-transform: capitalize;
 }
 

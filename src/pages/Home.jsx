@@ -39,6 +39,7 @@ function App() {
   const [searchedWord, setSearchedWord] = useState('');
   const [apiResponse, setApiResponse] = useState({});
   const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [fontStyle, setFontStyle] = useState('serif');
 
   const { register, handleSubmit } = useForm();
 
@@ -68,6 +69,8 @@ function App() {
         <PrimaryAppBar
           setIsDarkTheme={setIsDarkTheme}
           isDarkTheme={isDarkTheme}
+          fontStyle={fontStyle}
+          setFontStyle={setFontStyle}
         />
         <form id="searchedWordForm" onSubmit={handleSubmit(onSubmit, onError)}>
           <FormControl required fullWidth>

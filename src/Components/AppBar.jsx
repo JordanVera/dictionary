@@ -3,109 +3,37 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import { Classic } from '@theme-toggles/react';
-import Badge from '@mui/material/Badge';
+import { Within } from '@theme-toggles/react';
 import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import Switch from '@mui/material/Switch';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-export default function PrimaryAppBar({ isDarkTheme, setIsDarkTheme }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const setDarkTheme = () => {
-    document.querySelector('body').setAttribute('data-theme', 'dark');
-  };
-
-  const setLightTheme = () => {
-    document.querySelector('body').setAttribute('data-theme', 'light');
-  };
-
+export default function PrimaryAppBar({
+  isDarkTheme,
+  setIsDarkTheme,
+  fontStyle,
+  setFontStyle,
+}) {
   const toggleTheme = (e) => {
     setIsDarkTheme(!isDarkTheme);
     if (!isDarkTheme) {
-      return setDarkTheme();
+      document.querySelector('body').setAttribute('data-theme', 'dark');
     } else {
-      return setLightTheme();
+      document.querySelector('body').setAttribute('data-theme', 'light');
     }
   };
+  const toggleFont = (event) => {
+    const selectedFont = event.target.value;
+    setFontStyle(selectedFont);
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id="appbar"
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+    // Update the data-font attribute on the body element
+    document.querySelector('body').setAttribute('data-font', selectedFont);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }} id="appbar">
-      <AppBar position="static">
+      <AppBar position="static" elevation={0}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -113,19 +41,33 @@ export default function PrimaryAppBar({ isDarkTheme, setIsDarkTheme }) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuBookIcon className="menuIcon" />
+            <img src="/media/logo.png" alt="book logo" className="mainLogo" />
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon className="menuIcon" />
-              </Badge>
-            </IconButton>
+          <Box sx={{ display: { xs: 'flex' } }}>
+            <FormControl
+              fullWidth
+              className="fontSelect"
+              sx={{ backgroundColor: '#000' }}
+            >
+              <InputLabel>Font Style</InputLabel>
+              <Select
+                onChange={toggleFont}
+                value={fontStyle}
+                inputProps={{
+                  name: 'font',
+                  id: 'uncontrolled-native',
+                }}
+              >
+                <MenuItem value="serif">Serif</MenuItem>
+                <MenuItem value="sansSerif">Sans Serif</MenuItem>
+                <MenuItem value="mono">Monospace</MenuItem>
+              </Select>
+            </FormControl>
 
             <IconButton>
-              <Classic
+              <Within
                 toggled={isDarkTheme}
                 toggle={toggleTheme}
                 className="menuIcon themeToggle"
@@ -135,22 +77,8 @@ export default function PrimaryAppBar({ isDarkTheme, setIsDarkTheme }) {
               <Switch checked={isDarkTheme} onChange={toggleTheme} />
             </IconButton> */}
           </Box>
-
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
     </Box>
   );
 }

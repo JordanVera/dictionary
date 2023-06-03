@@ -53,7 +53,7 @@ const Definitions = ({ apiResponse }) => {
         );
       })}
 
-      <Divider />
+      <Divider sx={{ backgroundColor: '#1f1f1f !important' }} />
 
       <h3 className="source">
         Source:{' '}
