@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
+import { Classic } from '@theme-toggles/react';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -18,7 +15,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Switch from '@mui/material/Switch';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
-export default function PrimaryAppBar() {
+export default function PrimaryAppBar({ isDarkTheme, setIsDarkTheme }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -33,13 +30,25 @@ export default function PrimaryAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const setDarkTheme = () => {
+    document.querySelector('body').setAttribute('data-theme', 'dark');
+  };
+
+  const setLightTheme = () => {
+    document.querySelector('body').setAttribute('data-theme', 'light');
+  };
+
+  const toggleTheme = (e) => {
+    setIsDarkTheme(!isDarkTheme);
+    if (!isDarkTheme) {
+      return setDarkTheme();
+    } else {
+      return setLightTheme();
+    }
   };
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -104,23 +113,27 @@ export default function PrimaryAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuBookIcon />
+            <MenuBookIcon className="menuIcon" />
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <MailIcon className="menuIcon" />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Switch defaultChecked />
-            </IconButton>
 
-            <IconButton color="inherit">
-              <DarkModeOutlinedIcon />
+            <IconButton>
+              <Classic
+                toggled={isDarkTheme}
+                toggle={toggleTheme}
+                className="menuIcon themeToggle"
+              />
             </IconButton>
+            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Switch checked={isDarkTheme} onChange={toggleTheme} />
+            </IconButton> */}
           </Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

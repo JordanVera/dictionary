@@ -13,10 +13,32 @@ import { useForm } from 'react-hook-form';
 import PrimaryAppBar from '../Components/AppBar';
 import Definitions from '../Components/Definitions';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useEffect } from 'react';
+
+const light = {
+  palette: {
+    primary: {
+      main: '#A445ED',
+    },
+    mode: 'light',
+  },
+};
+
+const dark = {
+  palette: {
+    primary: {
+      main: '#A445ED',
+    },
+    mode: 'dark',
+  },
+};
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [searchedWord, setSearchedWord] = useState('');
   const [apiResponse, setApiResponse] = useState({});
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const { register, handleSubmit } = useForm();
 
@@ -41,39 +63,45 @@ function App() {
   };
 
   return (
-    <Container>
-      <PrimaryAppBar />
-      <form id="searchedWordForm" onSubmit={handleSubmit(onSubmit, onError)}>
-        <FormControl required fullWidth>
-          <TextField
-            id="searchBar"
-            label="Search for any word..."
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <IconButton
-                  className="submitMessageBtn"
-                  onClick={handleSubmit(onSubmit, onError)}
-                >
-                  <InputAdornment position="start">
-                    <SearchIcon
-                      sx={{
-                        color: '#A445ED',
-                      }}
-                    />
-                  </InputAdornment>
-                </IconButton>
-              ),
-            }}
-            {...register('searchedWord', { required: true })}
-          />
-        </FormControl>
-      </form>
+    <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
+      <Container>
+        <PrimaryAppBar
+          setIsDarkTheme={setIsDarkTheme}
+          isDarkTheme={isDarkTheme}
+        />
+        <form id="searchedWordForm" onSubmit={handleSubmit(onSubmit, onError)}>
+          <FormControl required fullWidth>
+            <TextField
+              id="searchBar"
+              label="Search for any word..."
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <IconButton
+                    className="submitMessageBtn"
+                    onClick={handleSubmit(onSubmit, onError)}
+                  >
+                    <InputAdornment position="start">
+                      <SearchIcon
+                        className="searchIcon"
+                        // sx={{
+                        //   color: '#A445ED',
+                        // }}
+                      />
+                    </InputAdornment>
+                  </IconButton>
+                ),
+              }}
+              {...register('searchedWord', { required: true })}
+            />
+          </FormControl>
+        </form>
 
-      {JSON.stringify(apiResponse) !== '{}' && (
-        <Definitions searchedWord={searchedWord} apiResponse={apiResponse} />
-      )}
-    </Container>
+        {JSON.stringify(apiResponse) !== '{}' && (
+          <Definitions searchedWord={searchedWord} apiResponse={apiResponse} />
+        )}
+      </Container>
+    </ThemeProvider>
   );
 }
 

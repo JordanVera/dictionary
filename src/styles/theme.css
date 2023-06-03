@@ -1,0 +1,140 @@
+:root {
+  --body_background: #050505;
+  --body_color: #fff;
+  --grey1: #757575;
+  --grey2: #1f1f1f;
+  --input_bg: #1f1f1f;
+  --purple:  #A445ED;
+  --icon_colors: #A445ED;
+  --purpleRGBA:  rgba(164, 69, 237, .3);
+  --link_color: navy;
+  --font_URL: url('/fonts/lora/Lora-VariableFont_wght.ttf');
+}
+
+
+[data-theme="light"] {
+  --body_background: #fff;
+  --body_color: #000;
+  --grey1: #757575;
+  --grey2: #1f1f1f;
+  --input_bg: #f4f4f4;
+  --purple:  #A445ED;
+  --icon_colors: #757575;
+  --purpleRGBA:  rgba(164, 69, 237, .3);
+  --link_color: red;
+}
+
+body {
+  background-color: var(--body_background);
+}
+
+a {
+	color: var(--link-color);
+}
+
+@font-face {
+	font-family: lora;
+	src: var(--font_URL);
+}
+
+li, h1, h2, h3, h4, span, p {
+	font-family: lora;
+}
+.purpleTxt {
+	color: var(--purple);
+}
+#root {
+	padding: 1rem;
+}
+#appbar .MuiToolbar-root {
+	background-color: var(--body_background) !important;
+}
+
+#appbar svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+
+.searchIcon, .menuIcon{
+  color: var(--icon_colors)
+}
+
+.MuiInputBase-root {
+	background-color: var(--input_bg);
+}
+#searchedWordForm {
+	margin: 1rem 0;
+}
+#searchedWordForm #searchBar {
+	width: 100% !important;
+}
+#definitions {
+	text-align: left;
+}
+#definitions .word, #definitions .audioPlayer {
+	margin-top: 3rem;
+}
+#definitions .phonetic {
+	color: var(--purple);
+}
+#definitions .partOfSpeech {
+	font-style: italic;
+}
+#definitions .definitionsGrid {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	grid-template-rows: 1fr;
+	gap: 0px 0px;
+	grid-template-areas: "text audioPlayer";
+	grid-template-columns: repeat(2, 1fr);
+}
+#definitions .definitionsGrid .audioPlayer {
+	text-align: right;
+}
+#definitions .meaning, #definitions .source {
+	color: #757575;
+}
+#definitions ul > li {
+	color: var(--purple);
+}
+#definitions ul > li > span {
+	color: var(--body_color) !important;
+}
+#definitions .syn {
+	margin-left: 2rem;
+}
+#definitions .playArrow {
+	color: var(--purple);
+	background-color: var(--purpleRGBA);
+	padding: 1.5rem;
+	border-radius: 50%;
+}
+#definitions li, #definitions h1, #definitions h2, #definitions h3, #definitions h4 {
+	color: var(--body_color);
+	margin: 1rem 0;
+}
+#definitions .partOfSpeech {
+	display: flex;
+	align-items: center;
+}
+#definitions .partOfSpeech::after {
+	content: '';
+	flex: 1;
+	margin-left: 1rem;
+	height: 1px;
+	background-color: var(--grey2);
+}
+#definitions .source a {
+	color: var(--font-color);
+}
+#definitions .source a:hover {
+	color: var(--purple);
+}
+#definitions .source a .icon {
+	font-size: 16px !important;
+}
+h1 {
+	text-transform: capitalize;
+}
+

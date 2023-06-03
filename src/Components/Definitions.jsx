@@ -1,12 +1,27 @@
-import { Divider } from '@mui/material';
+import { Divider, Button } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const Definitions = ({ apiResponse }) => {
-  console.log(apiResponse[0].meanings[0].definitions);
+  const filteredSnd = apiResponse[0].phonetics.filter((word, i) => {
+    return word.audio;
+  });
+  const snd = new Audio(`${filteredSnd[0].audio}`);
+
   return (
     <div id="definitions">
-      <h1 className="h1">{apiResponse[0].word}</h1>
-      <h2 className="phonetic">{apiResponse[0].phonetic}</h2>
+      <div className="definitionsGrid">
+        <div className="text">
+          <h1 className="h1 word">{apiResponse[0].word}</h1>
+          <h2 className="phonetic">{apiResponse[0].phonetic}</h2>
+        </div>
+        <div className="audioPlayer">
+          <Button onClick={() => snd.play()}>
+            <PlayArrowIcon className="playArrow" />
+          </Button>
+        </div>
+      </div>
+
       {/* <p>{apiResponse[0].meanings[0].definitions[0].definition}</p> */}
 
       {apiResponse[0].meanings.map((meaning, i) => {
@@ -44,7 +59,7 @@ const Definitions = ({ apiResponse }) => {
         Source:{' '}
         <a href={`${apiResponse[0].sourceUrls[0]}`}>
           {apiResponse[0].sourceUrls[0]}
-          <LaunchIcon className='icon' />
+          <LaunchIcon className="icon" />
         </a>
       </h3>
     </div>

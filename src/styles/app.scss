@@ -3,14 +3,35 @@ $white: #fff;
 $grey1: #757575;
 $grey2: #1f1f1f;
 $purple: #A445ED;
+$purpleRGBA: rgba(164, 69, 237, .3);
+
+a {
+  color: var(--link-color);
+}
+
+@font-face {
+  font-family: lora;
+  src: url('/fonts/lora/Lora-VariableFont_wght.ttf');
+}
+
+li,
+h1,
+h2,
+h3,
+h4,
+span,
+p {
+  font-family: lora;
+}
+
 
 .purpleTxt {
   color: $purple;
 }
 
-:root {
-  background-color: $black;
-}
+// :root {
+//   background-color: $black;
+// }
 
 #root {
   padding: 1rem;
@@ -41,12 +62,30 @@ $purple: #A445ED;
 #definitions {
   text-align: left;
 
+  .word,
+  .audioPlayer {
+    margin-top: 3rem;
+  }
+
   .phonetic {
     color: $purple;
   }
 
   .partOfSpeech {
     font-style: italic;
+  }
+
+  .definitionsGrid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "text audioPlayer";
+    grid-template-columns: repeat(2, 1fr);
+
+    .audioPlayer {
+      text-align: right;
+    }
   }
 
   .meaning,
@@ -67,7 +106,12 @@ $purple: #A445ED;
     margin-left: 2rem;
   }
 
-
+  .playArrow {
+    color: $purple;
+    background-color: $purpleRGBA;
+    padding: 1.5rem;
+    border-radius: 50%;
+  }
 
   li,
   h1,
