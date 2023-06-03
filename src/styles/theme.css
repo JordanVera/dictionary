@@ -46,10 +46,6 @@ a {
 	color: var(--link-color);
 }
 
-@font-face {
-	font-family: lora;
-	src: var(--font_URL);
-}
 
 li, h1, h2, h3, h4, span, p {
 	font-family: var(--font_URL);

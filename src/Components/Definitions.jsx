@@ -26,20 +26,20 @@ const Definitions = ({ apiResponse }) => {
 
       {apiResponse[0].meanings.map((meaning, i) => {
         return (
-          <>
+          <div key={i}>
             <h2 className="partOfSpeech">
               <span>{meaning.partOfSpeech}</span>
             </h2>
 
             <h3 className="meaning">Meaning</h3>
             <ul>
-              {apiResponse[0].meanings[i].definitions.map((meaning, i) => {
+              {apiResponse[0].meanings[i].definitions.map((meaning, j) => {
                 return (
-                  <>
+                  <div key={j}>
                     <li>
                       <span>{meaning.definition}</span>
                     </li>
-                  </>
+                  </div>
                 );
               })}
             </ul>
@@ -49,7 +49,7 @@ const Definitions = ({ apiResponse }) => {
                 {apiResponse[0].meanings[i].synonyms}
               </span>
             </h3>
-          </>
+          </div>
         );
       })}
 

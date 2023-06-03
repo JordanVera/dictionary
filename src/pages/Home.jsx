@@ -9,12 +9,13 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import PrimaryAppBar from '../Components/AppBar';
 import Definitions from '../Components/Definitions';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useEffect } from 'react';
+import Toaster from '../Components/Toast.jsx';
 
 const light = {
   palette: {
@@ -35,7 +36,6 @@ const dark = {
 };
 
 function App() {
-  const [loading, setLoading] = useState(false);
   const [searchedWord, setSearchedWord] = useState('');
   const [apiResponse, setApiResponse] = useState({});
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -46,6 +46,26 @@ function App() {
   const onSubmit = async (data) => {
     const { searchedWord } = data;
     setSearchedWord(searchedWord);
+
+    if (searchedWord === '') {
+      console.log('empty string submitted');
+      return;
+    }
+
+    if (searchedWord.split(' ').length > 1) {
+      toast('🦄 Please only submit 1 word to be looked up', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkTheme ? 'dark' : 'light',
+      });
+      console.log('please only submit 1 word to be looked up');
+      return;
+    }
 
     await axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
@@ -59,8 +79,25 @@ function App() {
     // .finally(() => setLoading(false));
   };
 
-  const onError = () => {
-    console.log('errorrr');
+  const onError = (data) => {
+    const { searchedWord } = data;
+
+    if (searchedWord.message === '') {
+      console.log('empty string submitted');
+      toast('🦄 Submission cannot be empty', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkTheme ? 'dark' : 'light',
+      });
+      return;
+    }
+
+    console.log('errorrrr');
   };
 
   return (
@@ -85,12 +122,7 @@ function App() {
                     onClick={handleSubmit(onSubmit, onError)}
                   >
                     <InputAdornment position="start">
-                      <SearchIcon
-                        className="searchIcon"
-                        // sx={{
-                        //   color: '#A445ED',
-                        // }}
-                      />
+                      <SearchIcon className="searchIcon" />
                     </InputAdornment>
                   </IconButton>
                 ),
@@ -104,6 +136,7 @@ function App() {
           <Definitions searchedWord={searchedWord} apiResponse={apiResponse} />
         )}
       </Container>
+      <Toaster />
     </ThemeProvider>
   );
 }

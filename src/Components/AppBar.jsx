@@ -66,13 +66,12 @@ export default function PrimaryAppBar({
               </Select>
             </FormControl>
 
-            <IconButton>
-              <Within
-                toggled={isDarkTheme}
-                toggle={toggleTheme}
-                className="menuIcon themeToggle"
-              />
-            </IconButton>
+            <Within
+              toggled={isDarkTheme}
+              toggle={toggleTheme}
+              className="menuIcon themeToggle"
+            />
+
             {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Switch checked={isDarkTheme} onChange={toggleTheme} />
             </IconButton> */}
