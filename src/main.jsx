@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/dictionary" element={<Home />} />
         {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
     </Router>
