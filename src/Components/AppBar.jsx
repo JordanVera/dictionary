@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Divider from '@mui/material/Divider';
 
 export default function PrimaryAppBar({
   isDarkTheme,
@@ -50,6 +51,7 @@ export default function PrimaryAppBar({
               fullWidth
               className="fontSelect"
               sx={{ backgroundColor: '#000' }}
+              size="small"
             >
               <InputLabel>Font Style</InputLabel>
               <Select
@@ -65,7 +67,11 @@ export default function PrimaryAppBar({
                 <MenuItem value="mono">Monospace</MenuItem>
               </Select>
             </FormControl>
-
+            <Divider
+              className="verticalDivider"
+              orientation="vertical"
+              flexItem
+            />
             <Within
               toggled={isDarkTheme}
               toggle={toggleTheme}

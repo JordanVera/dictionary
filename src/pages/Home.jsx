@@ -16,6 +16,7 @@ import Definitions from '../Components/Definitions';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Toaster from '../Components/Toast.jsx';
+import ClockSpinner from '../Components/ClockSpinner';
 
 const light = {
   palette: {
@@ -36,6 +37,7 @@ const dark = {
 };
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [searchedWord, setSearchedWord] = useState('');
   const [apiResponse, setApiResponse] = useState({});
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -70,13 +72,14 @@ function App() {
     await axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
       .then((response) => {
+        setLoading(true);
         const ans = response.data;
 
         console.log('ans');
         console.log(ans);
         setApiResponse(ans);
-      });
-    // .finally(() => setLoading(false));
+      })
+      .finally(() => setLoading(false));
   };
 
   const onError = (data) => {
@@ -132,9 +135,15 @@ function App() {
           </FormControl>
         </form>
 
-        {JSON.stringify(apiResponse) !== '{}' && (
-          <Definitions searchedWord={searchedWord} apiResponse={apiResponse} />
-        )}
+        {JSON.stringify(apiResponse) !== '{}' &&
+          (loading ? (
+            <ClockSpinner />
+          ) : (
+            <Definitions
+              searchedWord={searchedWord}
+              apiResponse={apiResponse}
+            />
+          ))}
       </Container>
       <Toaster />
     </ThemeProvider>

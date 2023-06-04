@@ -46,7 +46,6 @@ a {
 	color: var(--link-color);
 }
 
-
 li, h1, h2, h3, h4, span, p {
 	font-family: var(--font_URL);
 }
@@ -61,18 +60,28 @@ li, h1, h2, h3, h4, span, p {
 #root {
 	padding: 1rem;
 }
+#appbar .verticalDivider {
+	height: 3rem;
+	margin: 0 2rem;
+}
+
 #appbar .MuiToolbar-root {
 	background-color: var(--body_background) !important;
 }
 
-#appbar svg {
+#appbar .theme-toggle__within {
+	margin-left: -15px;
   height: 2rem;
-  width: 2rem;
+  width: 2rem ;
 }
 
 #appbar .fontSelect {
 	width: 150px;
 	background-color: var(--body_background) !important;
+}
+
+#appbar #mui-component-select-font {
+	background-color: var(--body_background);
 }
 
 .divider{
@@ -86,6 +95,13 @@ li, h1, h2, h3, h4, span, p {
 .MuiInputBase-root {
 	background-color: var(--input_bg);
 }
+
+h1 {
+  font-size: 4rem;
+	text-transform: capitalize;
+	margin-bottom: 6px !important;
+}
+
 #searchedWordForm {
 	margin: 1rem 0;
 }
@@ -96,9 +112,10 @@ li, h1, h2, h3, h4, span, p {
 	text-align: left;
 }
 #definitions .word, #definitions .audioPlayer {
-	margin-top: 3rem;
+	margin-top: 2rem;
 }
 #definitions .phonetic {
+	margin-top: 0 !important;
 	color: var(--purple);
 }
 #definitions .partOfSpeech {
@@ -125,6 +142,7 @@ li, h1, h2, h3, h4, span, p {
 	color: var(--body_color) !important;
 }
 #definitions .syn {
+	font-weight: 900 !important;
 	margin-left: 2rem;
 }
 #definitions .playArrow {
@@ -157,8 +175,33 @@ li, h1, h2, h3, h4, span, p {
 #definitions .source a .icon {
 	font-size: 16px !important;
 }
-h1 {
-  font-weight: 800 !important;
-	text-transform: capitalize;
+
+#spinner{
+	height: 3rem;
+	width: 3rem;
+}
+#definitions ul {
+	padding-left: 30px;
+}
+
+li::marker {
+	content: "   •   ";
+  color: var(--purple) !important; 
+}
+
+@media only screen and (max-width: 600px) {
+
+	#definitions ul {
+		padding-left: 20px;
+	}
+	
+
+	h1 {
+		font-size: 2.2rem;
+	}
+
+	#appbar .fontSelect {
+		width: 120px;
+	}
 }
 
