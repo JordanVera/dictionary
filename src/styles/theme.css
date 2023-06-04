@@ -13,7 +13,7 @@ font-family: 'Lora', serif; */
   --purple:  #A445ED;
   --icon_colors: #A445ED;
   --purpleRGBA:  rgba(164, 69, 237, .3);
-  --link_color: navy;
+	--font_color: #fff;
   --font_URL: 'Lora', serif; 
   ;
 }
@@ -28,7 +28,7 @@ font-family: 'Lora', serif; */
   --purple:  #A445ED;
   --icon_colors: #757575;
   --purpleRGBA:  rgba(164, 69, 237, .3);
-  --link_color: red;
+	--font_color: #000;
 }
 [data-font="sansSerif"] {
   --font_URL:  'Inter', sans-serif; 
@@ -167,13 +167,25 @@ h1 {
 	background-color: var(--grey2);
 }
 #definitions .source a {
-	color: var(--font-color);
+	color: var(--font_color);
+	margin-left: 2rem;
+	margin-right: 6px;
+	font-size: 1rem !important;
 }
+
+.source  {
+	font-size: 1rem;
+}
+
 #definitions .source a:hover {
 	color: var(--purple);
 }
-#definitions .source a .icon {
+#definitions .source .icon {
 	font-size: 16px !important;
+}
+
+.source {
+	text-decoration: underline;
 }
 
 #spinner{

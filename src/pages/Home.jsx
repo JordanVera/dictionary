@@ -55,7 +55,7 @@ function App() {
     }
 
     if (searchedWord.split(' ').length > 1) {
-      toast('🦄 Please only submit 1 word to be looked up', {
+      toast.error('Please only submit 1 word to be searched', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
@@ -87,7 +87,7 @@ function App() {
 
     if (searchedWord.message === '') {
       console.log('empty string submitted');
-      toast('🦄 Submission cannot be empty', {
+      toast.error('Submission cannot be empty', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,

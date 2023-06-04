@@ -7,7 +7,6 @@ const Definitions = ({ apiResponse }) => {
     return word.audio;
   });
   const snd = new Audio(`${filteredSnd[0].audio}`);
-
   return (
     <div id="definitions">
       <div className="definitionsGrid">
@@ -46,7 +45,7 @@ const Definitions = ({ apiResponse }) => {
             <h3 className="meaning">
               Synonoyms:{' '}
               <span className="purpleTxt syn">
-                {apiResponse[0].meanings[i].synonyms}
+                {apiResponse[0].meanings[i].synonyms.join(' ')}
               </span>
             </h3>
           </div>
@@ -59,8 +58,8 @@ const Definitions = ({ apiResponse }) => {
         Source:{' '}
         <a href={`${apiResponse[0].sourceUrls[0]}`}>
           {apiResponse[0].sourceUrls[0]}
-          <LaunchIcon className="icon" />
         </a>
+        <LaunchIcon className="icon" />
       </h3>
     </div>
   );
