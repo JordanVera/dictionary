@@ -105,7 +105,7 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
-      <Container>
+      <Container className="mainContainer">
         <PrimaryAppBar
           setIsDarkTheme={setIsDarkTheme}
           isDarkTheme={isDarkTheme}

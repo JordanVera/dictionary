@@ -38,6 +38,10 @@ font-family: 'Lora', serif; */
   --font_URL:  'Inconsolata', monospace;
 }
 
+#root {
+	padding-top: 4px !important;
+}
+
 body {
   background-color: var(--body_background);
 }
@@ -116,11 +120,10 @@ h1 {
 }
 #definitions .phonetic {
 	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 	color: var(--purple);
 }
-#definitions .partOfSpeech {
-	font-style: italic;
-}
+	
 #definitions .definitionsGrid {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
@@ -143,7 +146,7 @@ h1 {
 }
 #definitions .syn {
 	font-weight: 900 !important;
-	margin-left: 2rem;
+	margin-left: 1rem;
 }
 #definitions .playArrow {
 	color: var(--purple);
@@ -158,6 +161,8 @@ h1 {
 #definitions .partOfSpeech {
 	display: flex;
 	align-items: center;
+	font-style: italic;
+	margin: 2.4rem 0;
 }
 #definitions .partOfSpeech::after {
 	content: '';
@@ -168,13 +173,23 @@ h1 {
 }
 #definitions .source a {
 	color: var(--font_color);
-	margin-left: 2rem;
+	margin-left: 1rem;
 	margin-right: 6px;
+	font-size: .8rem !important;
+}
+
+#definitions .meaning {
 	font-size: 1rem !important;
 }
 
+.mainContainer {
+	max-width: 750px !important;
+	min-width: 200px;
+}
+
 .source  {
-	font-size: 1rem;
+	text-decoration: underline;
+	font-size: .8rem;
 }
 
 #definitions .source a:hover {
@@ -182,10 +197,6 @@ h1 {
 }
 #definitions .source .icon {
 	font-size: 16px !important;
-}
-
-.source {
-	text-decoration: underline;
 }
 
 #spinner{
@@ -202,6 +213,10 @@ li::marker {
 }
 
 @media only screen and (max-width: 600px) {
+
+	#definitions .playArrow {
+		padding: .9rem;
+	}
 
 	#definitions ul {
 		padding-left: 20px;
