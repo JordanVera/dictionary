@@ -59,7 +59,7 @@ li, h1, h2, h3, h4, span, p {
 
 
 #appbar {
-	margin: 2rem 0;
+	margin: 2.5rem 0;
 }
 
 .MuiToolbar-root {
@@ -215,6 +215,10 @@ li::marker {
 }
 
 @media only screen and (max-width: 600px) {
+
+	.MuiToolbar-root {
+		padding-left: 1rem !important;
+	}
 
 	#definitions .playArrow {
 		padding: .9rem;
